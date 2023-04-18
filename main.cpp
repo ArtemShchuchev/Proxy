@@ -30,12 +30,19 @@ int main(int argc, char** argv)
 {
 	printHeader(L"Домашнее задание к занятию «Структурные шаблоны: Proxy, Decorator, Adapter»");
 
+	/*
 	auto real_db = VeryHeavyDatabase();
     auto cached_db = CacheProxyDB(std::addressof(real_db));
     auto test_db = TestDB(std::addressof(real_db));
-    std::cout << cached_db.GetData("key") << std::endl;
-    std::cout << cached_db.GetData("key") << std::endl;
-    std::cout << test_db.GetData("key") << std::endl;
+    std::wcout << cached_db.GetData(L"key") << std::endl;
+    std::wcout << cached_db.GetData(L"key") << std::endl;
+    std::wcout << test_db.GetData(L"key") << std::endl;
+	*/
+	auto real_db = VeryHeavyDatabase();
+	auto limit_db = OneShotDB(std::addressof(real_db), 2);
+	std::wcout << limit_db.GetData(L"key") << std::endl;
+	std::wcout << limit_db.GetData(L"key") << std::endl;
+	std::wcout << limit_db.GetData(L"key") << std::endl;
 	
 	std::wcout << "\n";
 	return 0;
